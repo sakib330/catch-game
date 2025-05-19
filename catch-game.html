@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Catch the Box Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #gameArea {
+      width: 500px;
+      height: 300px;
+      border: 2px solid #000;
+      margin: 0 auto;
+      position: relative;
+      background-color: #f0f0f0;
+    }
+    #box {
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      position: absolute;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Catch the Box!</h1>
+<p>Click the red box as fast as you can!</p>
+<div id="gameArea">
+  <div id="box"></div>
+</div>
+<p>Score: <span id="score">0</span></p>
+
+<script>
+  const box = document.getElementById("box");
+  const gameArea = document.getElementById("gameArea");
+  const scoreDisplay = document.getElementById("score");
+  let score = 0;
+
+  function moveBox() {
+    const maxX = gameArea.clientWidth - box.clientWidth;
+    const maxY = gameArea.clientHeight - box.clientHeight;
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+    box.style.left = randomX + "px";
+    box.style.top = randomY + "px";
+  }
+
+  box.addEventListener("click", () => {
+    score++;
+    scoreDisplay.textContent = score;
+    moveBox();
+  });
+
+  moveBox(); // Start the game
+</script>
+
+</body>
+</html>
